@@ -1,240 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dom Barrera | Systems That Work</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --panel: #111827;
-      --card: #1f2937;
-      --text: #f8fafc;
-      --muted: #cbd5e1;
-      --accent: #38bdf8;
-      --accent-2: #22c55e;
-      --border: rgba(255,255,255,0.08);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    .wrap {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 32px 20px 72px;
-    }
-    .hero {
-      display: grid;
-      gap: 20px;
-      padding: 36px;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      background: rgba(255,255,255,0.03);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.28);
-    }
-    .eyebrow {
-      color: var(--accent);
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      font-size: 0.85rem;
-    }
-    h1 {
-      margin: 0;
-      font-size: clamp(2rem, 4.8vw, 4rem);
-      line-height: 1.05;
-    }
-    .sub {
-      margin: 0;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 8px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 18px;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid var(--border);
-    }
-    .btn.primary {
-      background: var(--accent);
-      color: #082f49;
-      border-color: transparent;
-    }
-    .btn.secondary {
-      color: var(--text);
-      background: rgba(255,255,255,0.04);
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .card {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 22px;
-    }
-    .metric {
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--accent-2);
-      margin-bottom: 6px;
-    }
-    h2 {
-      margin: 44px 0 16px;
-      font-size: 1.6rem;
-    }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 18px;
-    }
-    ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-    .service-list li, .proof-list li { margin-bottom: 10px; }
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .tag {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(56,189,248,0.1);
-      border: 1px solid rgba(56,189,248,0.2);
-      color: #bae6fd;
-      font-size: 0.92rem;
-    }
-    .footer {
-      margin-top: 44px;
-      padding: 24px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      text-align: center;
-      color: var(--muted);
-      background: rgba(255,255,255,0.03);
-    }
-    .small { font-size: 0.95rem; color: var(--muted); }
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      .two-col { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 560px) {
-      .hero { padding: 24px; }
-      .grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dom Barrera — LocalLift</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0d1f3c;--navy-dark:#081629;--orange:#f97316;--orange-h:#fb923c;--white:#ffffff;--off:#f4f7fb;--muted:#5a7a9e;--border:rgba(13,31,60,0.1);--light:#dce8f5}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--white);color:var(--navy);overflow-x:hidden}
+.lang-toggle{display:flex;align-items:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:100px;padding:0.25rem}
+.lang-btn{background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:'Barlow',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.08em;padding:0.3rem 0.85rem;border-radius:100px;cursor:pointer;transition:background 0.2s,color 0.2s}
+.lang-btn.active{background:var(--orange);color:var(--white)}
+.topbar{background:var(--navy-dark);color:rgba(255,255,255,0.6);padding:0.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase}
+.topbar a{color:#7ec8f7;text-decoration:none;font-weight:600}
+nav{background:var(--navy);padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,0.25)}
+.logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:var(--white);text-decoration:none}
+.logo span{color:var(--orange)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-cta{background:var(--orange);color:var(--white);font-weight:700;font-size:0.82rem;padding:0.55rem 1.4rem;border-radius:4px;text-decoration:none;text-transform:uppercase;letter-spacing:0.04em;transition:background 0.2s}
+.nav-cta:hover{background:var(--orange-h)}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:80vh;background:var(--navy);overflow:hidden}
+.hero-visual{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 45%,#16345d 100%);position:relative;display:flex;align-items:center;justify-content:center;padding:3rem}
+.hero-visual::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(249,115,22,0.18), transparent 30%),radial-gradient(circle at 75% 60%, rgba(126,200,247,0.14), transparent 28%);pointer-events:none}
+.hero-card{position:relative;z-index:1;max-width:420px;width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:2rem;backdrop-filter:blur(6px);box-shadow:0 20px 50px rgba(0,0,0,0.25)}
+.hero-card-label{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange-h);margin-bottom:1rem}
+.hero-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;line-height:0.95;text-transform:uppercase;color:var(--white);margin-bottom:0.75rem}
+.hero-card p{font-size:0.95rem;line-height:1.65;color:rgba(255,255,255,0.72);margin-bottom:1.5rem}
+.hero-card-list{list-style:none;display:grid;gap:0.75rem}
+.hero-card-list li{display:flex;align-items:flex-start;gap:0.65rem;font-size:0.9rem;line-height:1.5;color:rgba(255,255,255,0.84)}
+.hero-card-list li::before{content:'✓';color:var(--orange);font-weight:800;flex-shrink:0}
+.hero-text{display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem 5rem 3.5rem}
+.hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(249,115,22,0.15);border:1px solid rgba(249,115,22,0.35);color:var(--orange-h);font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 1rem;border-radius:100px;margin-bottom:1.5rem;width:fit-content;animation:fadeUp 0.6s ease forwards;opacity:0}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--orange);border-radius:50%}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,5vw,5rem);line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;color:var(--white);margin-bottom:1.5rem;animation:fadeUp 0.6s 0.15s ease forwards;opacity:0}
+.hero h1 em{font-style:normal;color:var(--orange);display:block}
+.hero-desc{font-size:1.05rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,0.7);max-width:440px;margin-bottom:2.25rem;animation:fadeUp 0.6s 0.3s ease forwards;opacity:0}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp 0.6s 0.45s ease forwards;opacity:0}
+.btn-primary{background:var(--orange);color:var(--white);font-weight:700;font-size:0.95rem;padding:0.9rem 2rem;border-radius:4px;text-decoration:none;text-transform:uppercase;letter-spacing:0.04em;transition:background 0.2s,transform 0.15s;box-shadow:0 4px 20px rgba(249,115,22,0.35);display:inline-block}
+.btn-primary:hover{background:var(--orange-h);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--white);font-weight:500;font-size:0.95rem;padding:0.9rem 1.75rem;border-radius:4px;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:border-color 0.2s,background 0.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.05)}
+.metrics{background:var(--navy-dark);display:grid;grid-template-columns:repeat(4,1fr);border-top:3px solid var(--orange)}
+.metric-item{padding:2rem 1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,0.07);transition:background 0.2s}
+.metric-item:last-child{border-right:none}
+.metric-item:hover{background:rgba(255,255,255,0.03)}
+.metric-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.5rem;color:var(--orange);line-height:1;display:block}
+.metric-label{font-size:0.75rem;color:rgba(255,255,255,0.5);letter-spacing:0.06em;text-transform:uppercase;margin-top:0.35rem;display:block}
+.section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange);margin-bottom:0.6rem}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2rem,3.5vw,3rem);text-transform:uppercase;line-height:1;margin-bottom:1rem;color:var(--navy)}
+.section-sub{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:3rem}
+.services-section{padding:6rem 2.5rem;background:var(--off)}
+.services-inner{max-width:1100px;margin:0 auto}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.service-card{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:2rem;position:relative;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s}
+.service-card.featured{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange)}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(13,31,60,0.1)}
+.service-badge{position:absolute;top:1rem;right:1rem;background:var(--orange);color:var(--white);font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.2rem 0.75rem;border-radius:100px}
+.service-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.service-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;text-transform:uppercase;margin-bottom:0.75rem;color:var(--navy)}
+.service-card p{font-size:0.92rem;color:var(--muted);line-height:1.65;margin-bottom:1.25rem}
+.service-features{list-style:none;margin-bottom:1.5rem}
+.service-features li{font-size:0.88rem;color:var(--navy);padding:0.35rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0.5rem}
+.service-features li:last-child{border-bottom:none}
+.service-features li::before{content:'✓';color:var(--orange);font-weight:700;flex-shrink:0}
+.service-price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.5rem;color:var(--navy);line-height:1}
+.service-price span{font-size:1.25rem;vertical-align:super}
+.cottage-section{background:var(--navy);padding:6rem 2.5rem;position:relative;overflow:hidden}
+.cottage-section::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(to right,var(--orange),var(--orange-h),transparent)}
+.cottage-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.cottage-section .section-title{color:var(--white)}
+.cottage-section .section-label{color:var(--orange-h)}
+.cottage-section .section-sub{color:rgba(255,255,255,0.6);margin-bottom:2rem}
+.cottage-list{list-style:none;margin-bottom:2rem}
+.cottage-list li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.75);margin-bottom:1rem;line-height:1.5}
+.cottage-list li::before{content:'→';color:var(--orange);font-weight:700;flex-shrink:0}
+.cottage-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:2.5rem}
+.cottage-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.6rem;text-transform:uppercase;color:var(--white);margin-bottom:1.5rem}
+.offer-row{display:flex;align-items:center;gap:1rem;padding:0.85rem 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.offer-row:last-of-type{border-bottom:none}
+.offer-check{width:24px;height:24px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:var(--white);font-weight:700;flex-shrink:0}
+.offer-text{font-size:0.92rem;color:rgba(255,255,255,0.8)}
+.cottage-price{margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.cottage-price-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3rem;color:var(--orange);line-height:1}
+.how-section{padding:6rem 2.5rem;background:var(--off)}
+.how-inner{max-width:1100px;margin:0 auto}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.step{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:2rem 1.5rem;transition:border-color 0.2s,transform 0.2s}
+.step:hover{border-color:var(--orange);transform:translateY(-3px)}
+.step-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3.5rem;color:var(--light);line-height:1;margin-bottom:0.75rem}
+.step h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;text-transform:uppercase;color:var(--navy);margin-bottom:0.5rem}
+.step p{font-size:0.88rem;color:var(--muted);line-height:1.6}
+.proof-section{padding:6rem 2.5rem;background:var(--white)}
+.proof-inner{max-width:1100px;margin:0 auto}
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.proof-card{background:var(--off);border:1px solid var(--border);border-radius:6px;padding:2rem 2rem 2rem 2.25rem;position:relative}
+.proof-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--navy);border-radius:6px 0 0 6px}
+.proof-card .org{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;display:block}
+.proof-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;text-transform:uppercase;color:var(--navy);margin-bottom:0.5rem}
+.proof-card p{font-size:0.9rem;color:var(--muted);line-height:1.65}
+.who-section{background:var(--navy-dark);padding:6rem 2.5rem}
+.who-inner{max-width:1100px;margin:0 auto}
+.who-section .section-title{color:var(--white)}
+.who-section .section-sub{color:rgba(255,255,255,0.55)}
+.tags{display:flex;flex-wrap:wrap;gap:0.75rem}
+.tag{padding:0.6rem 1.25rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:4px;font-size:0.9rem;color:rgba(255,255,255,0.8);font-weight:500;transition:background 0.2s,border-color 0.2s,color 0.2s;cursor:default}
+.tag:hover{background:var(--orange);border-color:var(--orange);color:var(--white)}
+.cta-section{background:var(--orange);padding:6rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'LAUNCH';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18rem;color:rgba(255,255,255,0.06);white-space:nowrap;pointer-events:none;letter-spacing:-0.04em}
+.cta-section h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.5rem,5vw,4.5rem);text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:1rem;position:relative}
+.cta-section p{color:rgba(255,255,255,0.85);font-size:1.1rem;margin-bottom:2.5rem;position:relative}
+.btn-white{background:var(--white);color:var(--orange);font-weight:800;font-size:1rem;padding:1rem 2.5rem;border-radius:4px;text-decoration:none;text-transform:uppercase;letter-spacing:0.05em;transition:transform 0.15s,box-shadow 0.2s;position:relative;box-shadow:0 4px 20px rgba(0,0,0,0.15);display:inline-block}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.2)}
+.cta-note{margin-top:1.5rem;font-size:0.85rem;color:rgba(255,255,255,0.65);position:relative}
+.cta-note a{color:rgba(255,255,255,0.85);text-decoration:none}
+footer{background:var(--navy-dark);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid rgba(255,255,255,0.07)}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:var(--white);text-decoration:none}
+.footer-logo span{color:var(--orange)}
+.footer-note{font-size:0.82rem;color:rgba(255,255,255,0.4)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:960px){.hero{grid-template-columns:1fr;min-height:auto}.hero-text{padding:3rem 2rem}.metrics{grid-template-columns:repeat(2,1fr)}.services-grid{grid-template-columns:1fr 1fr}.cottage-inner{grid-template-columns:1fr;gap:2.5rem}.steps{grid-template-columns:1fr 1fr}.proof-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.topbar{font-size:0.7rem;flex-direction:column;gap:0.2rem;padding:0.6rem 1rem}.hero-text{padding:2.5rem 1.5rem}.metrics{grid-template-columns:repeat(2,1fr)}.services-grid,.steps{grid-template-columns:1fr}.services-section,.cottage-section,.how-section,.proof-section,.who-section,.cta-section{padding:4rem 1.25rem}}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <div class="eyebrow">Portfolio</div>
-      <h1>Systems that help small businesses get customers and run better.</h1>
-      <p class="sub">
-        I’m Dom Barrera. I’ve spent 10+ years building real-world programs — from federal food systems to $110M campaigns. Now I help small businesses launch fast with websites, lead capture, and simple automation that actually works.
-      </p>
-      <div class="cta-row">
-        <a class="btn primary" href="mailto:dom@rural-bites.com">Work with me</a>
-        <a class="btn secondary" href="https://www.linkedin.com/in/barreradb" target="_blank" rel="noreferrer">View LinkedIn</a>
-      </div>
-    </section>
 
-    <section class="grid">
-      <div class="card">
-        <div class="metric">10+ Years</div>
-        <div>Building programs, systems, and operations that work in the real world.</div>
-      </div>
-      <div class="card">
-        <div class="metric">$110M+</div>
-        <div>In long-term public funding supported through campaign and coalition work.</div>
-      </div>
-      <div class="card">
-        <div class="metric">2.9M+</div>
-        <div>Meals delivered through a statewide non-congregate food access program.</div>
-      </div>
-      <div class="card">
-        <div class="metric">30,000+</div>
-        <div>Children reached through large-scale service delivery systems in Colorado.</div>
-      </div>
-    </section>
+<div class="topbar">
+  <span>LocalLift · Dom Barrera · Greeley, CO</span>
+  <a href="mailto:dom.barrera.co@gmail.com">dom.barrera.co@gmail.com</a>
+</div>
 
-    <h2>What I can help with</h2>
-    <section class="two-col">
-      <div class="card">
-        <ul class="service-list">
-          <li>Simple websites built to help you get found and get calls</li>
-          <li>Lead capture systems that turn visitors into real inquiries</li>
-          <li>AI chat and auto-response setups for faster follow-up</li>
-          <li>Landing pages for side hustles, service businesses, and local brands</li>
-          <li>Fast launch support for people monetizing a skill, service, truck, land, or home-based business</li>
-        </ul>
-      </div>
-      <div class="card">
-        <strong>Best fit clients</strong>
-        <div class="tag-row">
-          <span class="tag">Local businesses</span>
-          <span class="tag">Service providers</span>
-          <span class="tag">Home-based businesses</span>
-          <span class="tag">Side hustlers</span>
-          <span class="tag">Founders</span>
-          <span class="tag">Contractors</span>
-        </div>
-      </div>
-    </section>
-
-    <h2>Why clients trust me</h2>
-    <section class="card">
-      <ul class="proof-list">
-        <li>I’ve launched programs from scratch, managed complex logistics, and built systems that hold up under pressure.</li>
-        <li>I’ve managed $6M+ in budgets and worked across public, nonprofit, and civic tech environments.</li>
-        <li>I focus on what actually moves the business: getting found, capturing leads, and making it easy for people to contact you.</li>
-        <li>I don’t just build pages that look good. I build setups that are meant to produce results.</li>
-      </ul>
-    </section>
-
-    <h2>How I work</h2>
-    <section class="two-col">
-      <div class="card">
-        <strong>1. Clarify the offer</strong>
-        <p class="small">We get clear on what you sell, who it’s for, and what action you want people to take.</p>
-      </div>
-      <div class="card">
-        <strong>2. Build fast</strong>
-        <p class="small">I turn that into a simple website, landing page, or lead system that is easy to use and easy to update.</p>
-      </div>
-      <div class="card">
-        <strong>3. Get you live</strong>
-        <p class="small">The goal is speed, clarity, and something you can actually use right away.</p>
-      </div>
-      <div class="card">
-        <strong>4. Improve over time</strong>
-        <p class="small">Once it’s live, you can keep refining the message, follow-up, and conversion flow.</p>
-      </div>
-    </section>
-
-    <section class="footer">
-      <strong>Need a simple site or system that helps your business actually move?</strong><br />
-      Email <a href="mailto:dom@rural-bites.com" style="color:#7dd3fc;">dom@rural-bites.com</a> or connect on <a href="https://www.linkedin.com/in/barreradb" target="_blank" rel="noreferrer" style="color:#7dd3fc;">LinkedIn</a>.
-    </section>
+<nav>
+  <a class="logo" href="#">Local<span>Lift</span></a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('es')" id="btn-es">ES</button>
+    </div>
+    <a class="nav-cta" href="mailto:dom.barrera.co@gmail.com" data-en="Get Started" data-es="Empezar">Get Started</a>
   </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="hero-card-label" data-en="What you get" data-es="Lo que obtienes">What you get</div>
+      <h3 data-en="Simple setup. Real business impact." data-es="Configuración simple. Impacto real.">Simple setup. Real business impact.</h3>
+      <p data-en="A clean online presence built to help local customers trust you, contact you, and book with you." data-es="Una presencia en línea clara para que clientes locales confíen en ti, te contacten y reserven contigo.">A clean online presence built to help local customers trust you, contact you, and book with you.</p>
+      <ul class="hero-card-list">
+        <li data-en="Website built for local trust" data-es="Sitio web pensado para generar confianza local">Website built for local trust</li>
+        <li data-en="Smart chat support for common questions" data-es="Chat inteligente para preguntas comunes">Smart chat support for common questions</li>
+        <li data-en="Lead capture sent straight to your email" data-es="Captación de clientes directo a tu correo">Lead capture sent straight to your email</li>
+      </ul>
+    </div>
+  </div>
+  <div class="hero-text">
+    <div class="hero-badge" data-en="Local Business Launch Specialist" data-es="Especialista en Lanzamiento de Negocios Locales">Local Business Launch Specialist</div>
+    <h1 data-en="Your business,<em>live and ready.</em>" data-es="Tu negocio,<em>listo y en línea.</em>">Your business,<em>live and ready.</em></h1>
+    <p class="hero-desc" data-en="I build websites, smart chat support, and lead capture systems that help local service businesses get found, get booked, and make money — without the agency price tag." data-es="Construyo sitios web, chat inteligente y sistemas de captación para que tu negocio local aparezca en línea, reciba reservas y genere dinero — sin los precios de una agencia.">I build websites, smart chat support, and lead capture systems that help local service businesses get found, get booked, and make money — without the agency price tag.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="mailto:dom.barrera.co@gmail.com" data-en="Get started — from $75" data-es="Empezar — desde $75">Get started — from $75</a>
+      <a class="btn-ghost" href="https://www.linkedin.com/in/barreradb" target="_blank" rel="noreferrer" data-en="View LinkedIn" data-es="Ver LinkedIn">View LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<div class="metrics">
+  <div class="metric-item"><span class="metric-num">10+</span><span class="metric-label" data-en="Years building systems" data-es="Años construyendo sistemas">Years building systems</span></div>
+  <div class="metric-item"><span class="metric-num">$110M+</span><span class="metric-label" data-en="Public funding supported" data-es="Fondos públicos apoyados">Public funding supported</span></div>
+  <div class="metric-item"><span class="metric-num">2.9M+</span><span class="metric-label" data-en="Meals delivered" data-es="Comidas entregadas">Meals delivered</span></div>
+  <div class="metric-item"><span class="metric-num">$6M+</span><span class="metric-label" data-en="Budgets managed" data-es="Presupuestos administrados">Budgets managed</span></div>
+</div>
+
+<div class="services-section" id="services">
+  <div class="services-inner">
+    <div class="section-label" data-en="Packages" data-es="Paquetes">Packages</div>
+    <h2 class="section-title" data-en="Everything you need to launch." data-es="Todo lo que necesitas para lanzar.">Everything you need to launch.</h2>
+    <p class="section-sub" data-en="If you have a skill — cooking, cleaning, hauling, fixing, building, or anything hands-on — I help you turn that into something people can actually find, trust, and pay for online." data-es="Si tienes una habilidad — cocinar, limpiar, transportar, reparar o construir — te ayudo a convertir eso en algo que la gente pueda encontrar, confiar y pagar en línea.">If you have a skill — cooking, cleaning, hauling, fixing, building, or anything hands-on — I help you turn that into something people can actually find, trust, and pay for online.</p>
+      <p style="margin-top:0.75rem;font-size:0.95rem;color:rgba(255,255,255,0.7);font-weight:500" data-en="Lawn care. Tamales. Junk removal. Cleaning. Doesn’t matter." data-es="Jardinería. Tamales. Acarreo. Limpieza. No importa.">Lawn care. Tamales. Junk removal. Cleaning. Doesn’t matter.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🚀</span>
+        <h3 data-en="Starter" data-es="Básico">Starter</h3>
+        <p data-en="Get found online this week. Perfect if you just need to exist and look legit." data-es="Aparece en línea esta semana. Perfecto si necesitas verte profesional.">Get found online this week. Perfect if you just need to exist and look legit.</p>
+        <ul class="service-features">
+          <li data-en="1-page website" data-es="Sitio web de 1 página">1-page website</li>
+          <li data-en="Contact form to your email" data-es="Formulario de contacto a tu correo">Contact form to your email</li>
+          <li data-en="Google Business Profile setup" data-es="Configuración de Google Business">Google Business Profile setup</li>
+          <li data-en="Mobile optimized" data-es="Optimizado para celular">Mobile optimized</li>
+        </ul>
+        <div class="service-price"><span>$</span>75</div>
+      </div>
+      <div class="service-card featured">
+        <div class="service-badge" data-en="Most Popular" data-es="Más Popular">Most Popular</div>
+        <span class="service-icon">⚡</span>
+        <h3 data-en="Launch" data-es="Lanzamiento">Launch</h3>
+        <p data-en="Get found, get leads, get booked. Your business keeps working even when you're busy." data-es="Aparece, capta clientes, recibe reservas. Tu negocio sigue trabajando aunque estés ocupado.">Get found, get leads, get booked. Your business keeps working even when you're busy.</p>
+        <ul class="service-features">
+          <li data-en="3-page website" data-es="Sitio web de 3 páginas">3-page website</li>
+          <li data-en="24/7 smart chat support for FAQs" data-es="Chat inteligente 24/7 para preguntas comunes">24/7 smart chat support for FAQs</li>
+          <li data-en="Lead capture to Google Sheet CRM" data-es="Captación de clientes a Google Sheets">Lead capture to Google Sheet CRM</li>
+          <li data-en="Google Business Profile setup" data-es="Configuración de Google Business">Google Business Profile setup</li>
+          <li data-en="Delivered in 5 days" data-es="Entregado en 5 días">Delivered in 5 days</li>
+        </ul>
+        <div class="service-price"><span>$</span>150</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔥</span>
+        <h3 data-en="Growth" data-es="Crecimiento">Growth</h3>
+        <p data-en="Your complete local business launch system. Everything to help you get customers faster." data-es="Tu sistema completo de lanzamiento. Todo para ayudarte a conseguir clientes más rápido.">Your complete local business launch system. Everything to help you get customers faster.</p>
+        <ul class="service-features">
+          <li data-en="Everything in Launch" data-es="Todo lo del paquete Lanzamiento">Everything in Launch</li>
+          <li data-en="SEO blog post for your city and service" data-es="Artículo de blog SEO para tu ciudad">SEO blog post for your city and service</li>
+          <li data-en="Meta ads starter guide" data-es="Guía inicial de anuncios en Meta">Meta ads starter guide</li>
+          <li data-en="30-day email support" data-es="30 días de soporte por correo">30-day email support</li>
+          <li data-en="Delivered in 7 days" data-es="Entregado en 7 días">Delivered in 7 days</li>
+        </ul>
+        <div class="service-price"><span>$</span>299</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cottage-section" id="cottage">
+  <div class="cottage-inner">
+    <div>
+      <div class="section-label" data-en="Who this is for" data-es="Para quién es">Who this is for</div>
+      <h2 class="section-title" data-en="You have the skill. Right now you're invisible. I fix that." data-es="Tú tienes el talento. Yo construyo lo que te trae clientes.">You have the skill. I build what gets you customers.</h2>
+      <p class="section-sub" data-en="If you have a skill — cooking, cleaning, hauling, fixing, building, or anything hands-on — I help you turn that into something people can actually find, trust, and pay for online." data-es="Si cocinas, haces postres o vendes comida desde casa — te ayudo a convertir eso en algo que la gente pueda encontrar, confiar y ordenar en línea.">If you cook, bake, prep meals, or sell food from home — I help you turn that into something people can actually find, trust, and order from online.</p>
+      <ul class="cottage-list">
+        <li data-en="You’re good at what you do — but people can’t find you online" data-es="Eres bueno en lo que haces — pero la gente no te encuentra en línea">You’re good at what you do — but people can’t find you online</li>
+        <li data-en="Customers message you randomly and it's hard to keep track" data-es="Los clientes te escriben por todos lados y es difícil organizarlo">Customers message you randomly and it's hard to keep track</li>
+        <li data-en="You don’t have a simple way to show what you offer or take requests" data-es="No tienes una forma clara de mostrar lo que ofreces o tomar solicitudes">You don’t have a simple way to show what you offer or take requests</li>
+        <li data-en="You want to look more professional and build trust" data-es="Quieres verte más profesional y generar confianza">You want to look more professional and build trust</li>
+        <li data-en="You just want more calls, jobs, and customers — without overcomplicating it" data-es="Solo quieres más llamadas, trabajos y clientes — sin complicarte">You just want more calls, jobs, and customers — without overcomplicating it</li>
+      </ul>
+    </div>
+    <div class="cottage-card">
+      <h3 data-en="What I build to get you customers" data-es="Lo que construyo para ti">What I build to get you customers</h3>
+      <div class="offer-row"><div class="offer-check">✓</div><div class="offer-text" data-en="A simple website that shows what you do, your pricing, and how to contact you" data-es="Un sitio web simple con tu menú, fotos e historia">A simple website with your menu, photos, and story</div></div>
+      <div class="offer-row"><div class="offer-check">✓</div><div class="offer-text" data-en="A form so customers can request jobs or orders directly to your email" data-es="Un formulario para que clientes pidan directo a tu correo">A form so customers can request orders directly to your email</div></div>
+      <div class="offer-row"><div class="offer-check">✓</div><div class="offer-text" data-en="Smart chat support that answers common questions automatically (pricing, availability, services)" data-es="Chat inteligente que responde preguntas automáticamente">Smart chat support that answers common questions automatically</div></div>
+      <div class="offer-row"><div class="offer-check">✓</div><div class="offer-text" data-en="Google Business Profile so people nearby can find and call you" data-es="Perfil de Google Business para que te encuentren cerca">Google Business Profile so people nearby can find you</div></div>
+      <div class="offer-row"><div class="offer-check">✓</div><div class="offer-text" data-en="Mobile-friendly setup so it looks good when shared on Facebook and Instagram" data-es="Optimizado para celular para verse bien en redes">Mobile-friendly setup so it looks good on Instagram and Facebook</div></div>
+      <div class="cottage-price">
+        <div>
+          <div class="cottage-price-num">$150</div>
+          <div style="font-size:0.8rem;color:rgba(255,255,255,0.5);margin-top:0.25rem" data-en="One-time. No monthly fees." data-es="Pago único. Sin mensualidades.">One-time. No monthly fees.</div>
+        </div>
+        <a class="btn-primary" href="mailto:dom.barrera.co@gmail.com" style="font-size:0.85rem;padding:0.75rem 1.5rem" data-en="Get started" data-es="Empezar">Get started</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="how-section" id="how">
+  <div class="how-inner">
+    <div class="section-label" data-en="Process" data-es="Proceso">Process</div>
+    <h2 class="section-title" data-en="Live in under a week." data-es="En línea en menos de una semana.">Live in under a week.</h2>
+    <p class="section-sub" data-en="No back and forth. No tech headaches. Fill out the intake form and I handle the rest." data-es="Sin idas y vueltas. Sin dolores de cabeza técnicos. Llena el formulario y yo me encargo del resto.">No back and forth. No tech headaches. Fill out the intake form and I handle the rest.</p>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h3 data-en="Fill intake form" data-es="Llena el formulario">Fill intake form</h3><p data-en="15 questions. 10 minutes. Gives me everything I need." data-es="15 preguntas. 10 minutos. Me da todo lo que necesito.">15 questions. 10 minutes. Gives me everything I need.</p></div>
+      <div class="step"><div class="step-num">02</div><h3 data-en="I build it" data-es="Lo construyo">I build it</h3><p data-en="Site, smart chat support, and lead capture built in 48–72 hours." data-es="Sitio, chat inteligente y captación listos en 48–72 horas.">Site, smart chat support, and lead capture built in 48–72 hours.</p></div>
+      <div class="step"><div class="step-num">03</div><h3 data-en="You approve" data-es="Tú apruebas">You approve</h3><p data-en="Review everything. I make tweaks. Then we go live." data-es="Revisas todo. Hago ajustes. Luego lo publicamos.">Review everything. I make tweaks. Then we go live.</p></div>
+      <div class="step"><div class="step-num">04</div><h3 data-en="Start getting calls" data-es="Empieza a recibir llamadas">Start getting calls</h3><p data-en="Your setup keeps working for you and inquiries go straight to your inbox." data-es="Tu sistema sigue trabajando por ti y los contactos llegan directo a tu correo.">Your setup keeps working for you and inquiries go straight to your inbox.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="proof-section" id="about">
+  <div class="proof-inner">
+    <div class="section-label" data-en="Background" data-es="Experiencia">Background</div>
+    <h2 class="section-title" data-en="Built by someone who launches things for real." data-es="Construido por alguien que lanza cosas de verdad.">Built by someone who launches things for real.</h2>
+    <p class="section-sub" data-en="Not a freelancer with a template. A decade of building systems that work under pressure." data-es="No soy un freelancer con una plantilla. Una década construyendo sistemas que funcionan bajo presión.">Not a freelancer with a template. A decade of building systems that work under pressure.</p>
+    <div class="proof-grid">
+      <div class="proof-card"><span class="org">RuralBites · 2025–Present</span><h3 data-en="Civic-tech platform across 5 states" data-es="Plataforma cívico-tecnológica en 5 estados">Civic-tech platform across 5 states</h3><p data-en="Built sponsor outreach, compliance systems, and delivery infrastructure aligned with USDA SFSP regulations across MT, NM, OK, IN, and AZ." data-es="Construí sistemas de alcance, cumplimiento e infraestructura alineados con regulaciones del USDA SFSP en 5 estados.">Built sponsor outreach, compliance systems, and delivery infrastructure aligned with USDA SFSP regulations across MT, NM, OK, IN, and AZ.</p></div>
+      <div class="proof-card"><span class="org">InnovateMee LLC · 2016–2025</span><h3 data-en="$110M+ in public funding supported" data-es="$110M+ en fondos públicos apoyados">$110M+ in public funding supported</h3><p data-en="Led ballot measures, coalition campaigns, and program delivery. Managed $6M+ in campaign budgets across citywide and statewide initiatives." data-es="Dirigí campañas de medidas electorales y programas para el sector público. Gestioné más de $6M en presupuestos de campaña.">Led ballot measures, coalition campaigns, and program delivery. Managed $6M+ in campaign budgets across citywide and statewide initiatives.</p></div>
+      <div class="proof-card"><span class="org">Colorado Food Cluster · 2020–2024</span><h3 data-en="2.9M meals delivered statewide" data-es="2.9M comidas entregadas en todo el estado">2.9M meals delivered statewide</h3><p data-en="Co-founded and scaled a non-congregate meal delivery program reaching 30,000+ school-age children. Built routing, enrollment, and compliance systems from scratch." data-es="Cofundé un programa de entrega de comidas alcanzando a más de 30,000 niños. Construí sistemas de rutas, inscripción y cumplimiento normativo desde cero.">Co-founded and scaled a non-congregate meal delivery program reaching 30,000+ school-age children. Built routing, enrollment, and compliance systems from scratch.</p></div>
+      <div class="proof-card"><span class="org">Denver Public Schools · 2014–2018</span><h3 data-en="Scaled youth workforce from 100 to 600+" data-es="Escalé programa juvenil de 100 a 600+ estudiantes">Scaled youth workforce from 100 to 600+</h3><p data-en="Drove WIOA initiative across Denver. Built B2B partnerships, CRM systems, and KPI dashboards presented to DC-based federal funders." data-es="Dirigí la iniciativa WIOA en Denver. Construí alianzas, sistemas CRM y paneles de KPIs para financiadores federales en Washington D.C.">Drove WIOA initiative across Denver. Built B2B partnerships, CRM systems, and KPI dashboards presented to DC-based federal funders.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="who-section">
+  <div class="who-inner">
+    <div class="section-label" data-en="Who I work with" data-es="Con quién trabajo">Who I work with</div>
+    <h2 class="section-title" data-en="You have the skill. I'll build the system." data-es="Tú tienes el talento. Yo construyo el sistema.">You have the skill. I'll build the system.</h2>
+    <p class="section-sub" data-en="If you have a service, a truck, land to monetize, or a simple idea, I can get you live and ready for customers." data-es="Si tienes un servicio, una camioneta, un terreno para monetizar o una idea simple, puedo ponerte en línea y listo para clientes.">If you have a service, a truck, land to monetize, or a simple idea, I can get you live and ready for customers.</p>
+    <div class="tags">
+      <span class="tag" data-en="Lawn care" data-es="Jardinería">Lawn care</span>
+      <span class="tag" data-en="Junk removal" data-es="Limpieza y acarreo">Junk removal</span>
+      <span class="tag" data-en="Handyman" data-es="Mantenimiento del hogar">Handyman</span>
+      <span class="tag" data-en="Cleaning services" data-es="Servicios de limpieza">Cleaning services</span>
+      <span class="tag" data-en="Cottage foods" data-es="Alimentos caseros">Cottage foods</span>
+      <span class="tag" data-en="Outdoor storage" data-es="Almacenamiento exterior">Outdoor storage</span>
+      <span class="tag" data-en="Pressure washing" data-es="Lavado a presión">Pressure washing</span>
+      <span class="tag" data-en="Delivery / Hauling" data-es="Entrega / Transporte">Delivery / Hauling</span>
+      <span class="tag" data-en="Home services" data-es="Servicios del hogar">Home services</span>
+      <span class="tag" data-en="Side hustles" data-es="Negocios secundarios">Side hustles</span>
+      <span class="tag" data-en="First-time entrepreneurs" data-es="Emprendedores por primera vez">First-time entrepreneurs</span>
+    </div>
+  </div>
+</div>
+
+<div class="cta-section">
+  <h2 data-en="Ready to get your business live?" data-es="¿Listo para lanzar tu negocio?">Ready to get your business live?</h2>
+  <p data-en="Website. Smart chat support. Lead capture. Done in under a week. Starting at $75." data-es="Sitio web. Chat inteligente. Captación de clientes. Listo en menos de una semana. Desde $75.">Website. Smart chat support. Lead capture. Done in under a week. Starting at $75.</p>
+  <a class="btn-white" href="mailto:dom.barrera.co@gmail.com" data-en="Get started today" data-es="Empieza hoy">Get started today</a>
+  <div class="cta-note">
+    <span data-en='Connect on <a href="https://www.linkedin.com/in/barreradb" target="_blank" rel="noreferrer">LinkedIn</a> &nbsp;·&nbsp; Available for freelance projects' data-es='Conéctate en <a href="https://www.linkedin.com/in/barreradb" target="_blank" rel="noreferrer">LinkedIn</a> &nbsp;·&nbsp; Disponible para proyectos freelance'>Connect on <a href="https://www.linkedin.com/in/barreradb" target="_blank" rel="noreferrer">LinkedIn</a> &nbsp;·&nbsp; Available for freelance projects</span>
+  </div>
+</div>
+
+<footer>
+  <a class="footer-logo" href="#">Local<span>Lift</span></a>
+  <div class="footer-note" data-en="© 2026 Dom Barrera · LocalLift · InnovateMee LLC" data-es="© 2026 Dom Barrera · LocalLift · InnovateMee LLC">© 2026 Dom Barrera · LocalLift · InnovateMee LLC</div>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+  document.querySelectorAll('[data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val !== null) el.innerHTML = val;
+  });
+  document.documentElement.lang = lang;
+}
+</script>
 </body>
 </html>
